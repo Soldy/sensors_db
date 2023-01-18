@@ -1,0 +1,5 @@
+CREATE TABLE `sensor_humidities` (
+    `sensor` BIGINT UNSIGNED NOT NULL,
+    `humidity` INT NOT NULL,
+    `unixtimestamp` BIGINT UNSIGNED NOT NULL,
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
