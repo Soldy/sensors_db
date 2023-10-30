@@ -1,0 +1,64 @@
+name: ci
+env:
+  MARIADB_DATABASE: ips_test
+  MARIADB_USER: root
+  MARIADB_PASSWORD: test_password
+  MARIADB_HOST: mariadb_master
+  PIP_ROOT_USER_ACTION: ignore
+
+
+on: [push]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
+    container:
+      image: mariadb:10
+    services:
+      mariadb-master:
+        image: mariadb:lts
+        env:
+          MARIADB_USER: test_user
+          MARIADB_PASSWORD: test_password
+          MARIADB_ROOT_PASSWORD: test_password
+        ports:
+          - 3306/tcp
+        options: >-
+          --name=mariadb_master
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+    env:
+      PYTHONPATH : ../src/:$PYTHONPATH
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: whoami
+      - run: ps ax
+      - run: pwd
+      - run: apt update
+      - run: apt upgrade -y
+      - run: apt install mariadb-client
+      - run: apt install libmariadb-dev -y
+      - run: apt install build-essential -y
+      - run: apt install git -y
+      - run: apt install curl -y
+      - run: ls /etc/apt/
+      - run: cat /etc/apt/sources.list
+      - run: ls /etc/apt/sources.list.d/
+      - run: echo 'SHOW DATABASES;' |mariadb -h mariadb-master -u root --password=test_password 
+      - run: echo 'CREATE DATABASE `panthera_test`;' |mariadb -h mariadb-master -u root --password=test_password 
+      - run: echo 'SHOW DATABASES;' |mariadb -h mariadb-master -u root --password=test_password 
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pytest 
+      - run: python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple 'openPanthera>=0.0.14a2'
+      - run: curl https://raw.githubusercontent.com/Soldy/openPanthera/0.0.14a3/tools/github_test/test.py > test.py
+      - run: curl https://raw.githubusercontent.com/Soldy/openPanthera/0.0.14a3/tools/github_test/mariadb.conf.json > mariadb.conf.json
+      - run: pytest test.py
+
