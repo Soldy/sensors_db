@@ -1,5 +1,5 @@
 CREATE TABLE `sensor_tempetures` (
     `sensor` BIGINT UNSIGNED NOT NULL,
     `tempeture` INT NOT NULL,
-    `unixtimestamp` BIGINT UNSIGNED NOT NULL,
+    `stamp` BIGINT UNSIGNED NOT NULL
 )  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

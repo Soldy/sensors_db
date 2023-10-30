@@ -1,6 +1,6 @@
-CREATE TABLE `sensor_humidities` (
+CREATE TABLE `sensor_switches` (
     `sensor` BIGINT UNSIGNED NOT NULL,
     `status` BOOL NOT NULL,
-    `unixtimestamp` BIGINT UNSIGNED NOT NULL,
+    `stamp` BIGINT UNSIGNED NOT NULL
 )  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
