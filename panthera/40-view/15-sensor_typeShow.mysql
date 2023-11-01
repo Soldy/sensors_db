@@ -1,0 +1,6 @@
+CREATE OR REPLACE VIEW sensor_typeShow AS SELECT 
+    `sensor_types`.`id`,
+    CAST(`sensor_types`.`type` AS UNSIGNED INTEGER) AS `type`,
+    `sensor_types`.`sensor_name` AS `sensor`
+    FROM `sensor_types`
+      ORDER BY `sensor_types`.`type` DESC;
