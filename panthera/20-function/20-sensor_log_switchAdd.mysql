@@ -1,0 +1,18 @@
+CREATE OR REPLACE FUNCTION `sensor_log_switchAdd`(
+    ISENSOR BIGINT,
+    ISTATUS BOOL
+) RETURNS BIGINT UNSIGNED MODIFIES SQL DATA
+BEGIN
+    DECLARE stamp BIGINT;
+    SELECT UNIX_TIMESTAMP() INTO stamp;
+    INSERT INTO `sensor_log_switches` (
+        `sensor_log_switches`.`sensor`,
+        `sensor_log_switches`.`status`,
+        `sensor_log_switches`.`stamp`
+      ) VALUES (
+        ISENSOR,
+        ISTATUS,
+        stamp
+      );
+    RETURN (SELECT LAST_INSERT_ID());
+END;

@@ -1,0 +1,18 @@
+CREATE OR REPLACE FUNCTION `sensor_log_tempetureAdd`(
+    ISENSOR BIGINT,
+    ITEMPETURE INT
+) RETURNS BIGINT UNSIGNED MODIFIES SQL DATA
+BEGIN
+    DECLARE stamp BIGINT;
+    SELECT UNIX_TIMESTAMP() INTO stamp;
+    INSERT INTO `sensor_log_tempetures` (
+        `sensor_log_tempetures`.`sensor`,
+        `sensor_log_tempetures`.`tempeture`,
+        `sensor_log_tempetures`.`stamp`
+      ) VALUES (
+        ISENSOR,
+        ITEMPETURE,
+        stamp
+      );
+    RETURN (SELECT LAST_INSERT_ID());
+END;

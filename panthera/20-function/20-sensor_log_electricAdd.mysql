@@ -1,0 +1,19 @@
+CREATE OR REPLACE FUNCTION `sensor_log_electricAdd`(
+    ISENSOR BIGINT,
+    IPOTENTIAL INT,
+    ICURRENT INT
+) RETURNS BIGINT UNSIGNED MODIFIES SQL DATA
+BEGIN
+    DECLARE stamp BIGINT;
+    SELECT UNIX_TIMESTAMP() INTO stamp;
+    INSERT INTO `sensor_log_electrics` (
+        `sensor_log_electrics`.`sensor`,
+        `sensor_log_electrics`.`activity`,
+        `sensor_log_electrics`.`stamp`
+      ) VALUES (
+        ISENSOR,
+        IACTIVITY,
+        stamp
+      );
+    RETURN (SELECT LAST_INSERT_ID());
+END;
