@@ -57,7 +57,7 @@ jobs:
       - run: echo 'SHOW DATABASES;' |mariadb -h mariadb-master -u root --password=test_password 
       - run: python -m pip install --upgrade pip
       - run: python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pytest 
-      - run: python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple 'openPanthera>=0.0.14a2'
+      - run: python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple 'openPanthera>=0.0.14a3'
       - run: curl https://raw.githubusercontent.com/Soldy/openPanthera/0.0.14a3/tools/github_test/test.py > test.py
       - run: curl https://raw.githubusercontent.com/Soldy/openPanthera/0.0.14a3/tools/github_test/mariadb.conf.json > mariadb.conf.json
       - run: pytest test.py
