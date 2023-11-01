@@ -1,0 +1,6 @@
+CREATE TABLE `sensor_types` (
+    `id` SERIAL,
+    `type` BIT(32),
+    `table_name` VARCHAR(32),
+    `sensor_name` VARCHAR(32)
+);
