@@ -1,5 +1,6 @@
 CREATE TABLE `sensors` (
     `id` SERIAL,
-    `created` BIGINT NOT NULL,
+    `type` BIT(32),
+    `created_at` BIGINT NOT NULL,
      KEY `index` (`id`)
 )  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
