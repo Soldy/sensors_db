@@ -1,0 +1,9 @@
+INSERT INTO `sensor_types` (
+    `sensor_types`.`type`,
+    `sensor_types`.`table_name`,
+    `sensor_types`.`sensor_name`
+  ) VALUES (
+    2,
+    'sensor_tempetures',
+    'tempeture'
+  );
