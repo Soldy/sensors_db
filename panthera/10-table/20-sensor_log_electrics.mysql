@@ -1,7 +1,6 @@
-CREATE TABLE `sensor_electrics` (
+CREATE TABLE `sensor_log_electrics` (
     `sensor` BIGINT UNSIGNED NOT NULL,
     `potential` INT NOT NULL,
     `current` INT NOT NULL,
     `stamp` BIGINT UNSIGNED NOT NULL
 )  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-

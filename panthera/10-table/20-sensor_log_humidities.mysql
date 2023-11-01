@@ -1,4 +1,4 @@
-CREATE TABLE `sensor_humidities` (
+CREATE TABLE `sensor_log_humidities` (
     `sensor` BIGINT UNSIGNED NOT NULL,
     `humidity` INT NOT NULL,
     `stamp` BIGINT UNSIGNED NOT NULL

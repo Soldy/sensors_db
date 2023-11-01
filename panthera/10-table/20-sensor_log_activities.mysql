@@ -1,5 +1,5 @@
-CREATE TABLE `sensor_activities` (
+CREATE TABLE `sensor_log_log_activities` (
     `sensor` BIGINT UNSIGNED NOT NULL,
     `activity` INT NOT NULL,
     `stamp` BIGINT UNSIGNED NOT NULL
-)  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;;
